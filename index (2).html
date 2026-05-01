@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lentera Literasi — TBM Telukjambe Timur</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Playfair Display + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <!-- Logo -->
+      <a href="#home" class="nav-logo" data-page="home">
+        <span class="logo-icon">🪔</span>
+        <span class="logo-text">Lentera Literasi</span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home"    class="nav-link active" data-page="home">Home</a></li>
+        <li><a href="#tbm"     class="nav-link"        data-page="tbm">Daftar TBM</a></li>
+        <li><a href="#kontak"  class="nav-link"        data-page="kontak">Kontak</a></li>
+      </ul>
+
+      <!-- Hamburger (mobile) -->
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HALAMAN UTAMA (HOME) ===== -->
+  <section class="page active" id="home">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
+      <div class="hero-content">
+        <span class="hero-badge">📚 Telukjambe Timur, Karawang</span>
+        <h1 class="hero-title">Cahaya Literasi<br /><em>untuk Semua</em></h1>
+        <p class="hero-desc">
+          Lentera Literasi hadir sebagai jembatan antara masyarakat dan dunia pengetahuan.
+          Bersama Taman Bacaan Masyarakat, kami menyalakan semangat membaca di setiap sudut Telukjambe Timur.
+        </p>
+        <div class="hero-cta">
+          <a href="#tbm" class="btn btn-primary" id="ctaTBM">Jelajahi TBM</a>
+          <a href="#kontak" class="btn btn-outline" id="ctaKontak">Hubungi Kami</a>
+        </div>
+      </div>
+      <div class="hero-illustration">
+        <div class="book-stack">
+          <div class="book book-a"></div>
+          <div class="book book-b"></div>
+          <div class="book book-c"></div>
+          <div class="book book-d"></div>
+          <div class="lantern">🪔</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat"><span class="stat-num">8+</span><span class="stat-label">TBM Aktif</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">2.000+</span><span class="stat-label">Koleksi Buku</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Pembaca Aktif</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">6</span><span class="stat-label">Kelurahan</span></div>
+    </div>
+
+    <!-- Tentang Program -->
+    <div class="section about-section">
+      <div class="section-label">Tentang Program</div>
+      <h2 class="section-title">Apa itu Lentera Literasi?</h2>
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-icon">🎯</div>
+          <h3>Tujuan</h3>
+          <p>Meningkatkan minat dan budaya baca masyarakat Telukjambe Timur, khususnya anak-anak dan remaja, sebagai fondasi kecerdasan bangsa.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-icon">🌱</div>
+          <h3>Manfaat</h3>
+          <p>Memberikan akses buku gratis, menumbuhkan kreativitas, serta membuka wawasan masyarakat melalui kegiatan literasi yang menyenangkan.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-icon">🏡</div>
+          <h3>Peran TBM</h3>
+          <p>Taman Bacaan Masyarakat menjadi ruang belajar yang inklusif, ramah, dan mudah dijangkau oleh seluruh lapisan masyarakat.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Banner -->
+    <div class="cta-banner">
+      <div class="cta-banner-inner">
+        <p class="cta-text">Temukan TBM terdekat di lingkunganmu dan mulailah perjalanan literasimu hari ini!</p>
+        <a href="#tbm" class="btn btn-primary" id="ctaBanner">Lihat Daftar TBM →</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===== HALAMAN DAFTAR TBM ===== -->
+  <section class="page" id="tbm">
+    <div class="section">
+      <div class="section-label">Direktori</div>
+      <h2 class="section-title">Daftar Taman Bacaan Masyarakat</h2>
+      <p class="section-sub">Berikut adalah TBM yang aktif di wilayah Telukjambe Timur, Karawang.</p>
+
+      <!-- Filter chips -->
+      <div class="filter-chips" id="filterChips">
+        <button class="chip active" data-filter="all">Semua</button>
+        <button class="chip" data-filter="Wadas">Wadas</button>
+        <button class="chip" data-filter="Sukaluyu">Sukaluyu</button>
+        <button class="chip" data-filter="Puseurjaya">Puseurjaya</button>
+        <button class="chip" data-filter="Margamulya">Margamulya</button>
+        <button class="chip" data-filter="Sirnabaya">Sirnabaya</button>
+        <button class="chip" data-filter="Sukaharja">Sukaharja</button>
+      </div>
+
+      <!-- TBM Cards -->
+      <div class="tbm-grid" id="tbmGrid">
+
+        <div class="tbm-card" data-area="Wadas">
+          <div class="card-header">
+            <span class="card-icon">📖</span>
+            <span class="card-area">Wadas</span>
+          </div>
+          <h3 class="card-name">TBM Cahaya Wadas</h3>
+          <p class="card-desc">Taman bacaan berbasis komunitas yang menyediakan koleksi buku anak, remaja, dan buku keterampilan untuk warga Desa Wadas dan sekitarnya.</p>
+          <div class="card-info">
+            <div class="info-row">
+              <span class="info-icon">📍</span>
+              <span>Jl. Raya Wadas No. 12, Desa Wadas, Telukjambe Timur, Karawang</span>
+            </div>
+            <div class="info-row">
+              <span class="info-icon">📞</span>
+              <span>+62 812-3456-7890</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="badge badge-open">🟢 Buka Senin–Sabtu</span>
+          </div>
+        </div>
+
+        <div class="tbm-card" data-area="Sukaluyu">
+          <div class="card-header">
+            <span class="card-icon">🌟</span>
+            <span class="card-area">Sukaluyu</span>
+          </div>
+          <h3 class="card-name">TBM Bintang Sukaluyu</h3>
+          <p class="card-desc">Ruang literasi yang aktif menyelenggarakan kegiatan mendongeng, belajar bersama, dan pelatihan membaca bagi anak-anak usia dini.</p>
+          <div class="card-info">
+            <div class="info-row">
+              <span class="info-icon">📍</span>
+              <span>Jl. Sukaluyu Raya No. 5, Desa Sukaluyu, Telukjambe Timur, Karawang</span>
+            </div>
+            <div class="info-row">
+              <span class="info-icon">📞</span>
+              <span>+62 813-2345-6789</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="badge badge-open">🟢 Buka Setiap Hari</span>
+          </div>
+        </div>
+
+        <div class="tbm-card" data-area="Puseurjaya">
+          <div class="card-header">
+            <span class="card-icon">🏛️</span>
+            <span class="card-area">Puseurjaya</span>
+          </div>
+          <h3 class="card-name">TBM Tunas Puseurjaya</h3>
+          <p class="card-desc">Taman bacaan yang berlokasi di balai desa dengan koleksi lengkap meliputi buku pelajaran, novel, dan referensi pertanian untuk warga.</p>
+          <div class="card-info">
+            <div class="info-row">
+              <span class="info-icon">📍</span>
+              <span>Balai Desa Puseurjaya, Jl. Puseurjaya No. 1, Telukjambe Timur</span>
+            </div>
+            <div class="info-row">
+              <span class="info-icon">📞</span>
+              <span>+62 821-3456-7890</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="badge badge-open">🟢 Buka Selasa–Minggu</span>
+          </div>
+        </div>
+
+        <div class="tbm-card" data-area="Margamulya">
+          <div class="card-header">
+            <span class="card-icon">🌸</span>
+            <span class="card-area">Margamulya</span>
+          </div>
+          <h3 class="card-name">TBM Mekar Margamulya</h3>
+          <p class="card-desc">Taman bacaan berbasis masjid yang terbuka untuk umum, dengan program kelas literasi Al-Qur'an dan buku-buku islami untuk seluruh keluarga.</p>
+          <div class="card-info">
+            <div class="info-row">
+              <span class="info-icon">📍</span>
+              <span>Komplek Masjid Al-Hidayah, Desa Margamulya, Telukjambe Timur</span>
+            </div>
+            <div class="info-row">
+              <span class="info-icon">📞</span>
+              <span>+62 822-4567-8901</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="badge badge-open">🟢 Buka Setiap Hari</span>
+          </div>
+        </div>
+
+        <div class="tbm-card" data-area="Sirnabaya">
+          <div class="card-header">
+            <span class="card-icon">🚀</span>
+            <span class="card-area">Sirnabaya</span>
+          </div>
+          <h3 class="card-name">TBM Cerdas Sirnabaya</h3>
+          <p class="card-desc">Taman bacaan modern yang dilengkapi pojok digital, koleksi buku sains dan teknologi, serta program coding dasar untuk anak dan remaja.</p>
+          <div class="card-info">
+            <div class="info-row">
+              <span class="info-icon">📍</span>
+              <span>Jl. Sirnabaya Indah Blok C No. 3, Desa Sirnabaya, Telukjambe Timur</span>
+            </div>
+            <div class="info-row">
+              <span class="info-icon">📞</span>
+              <span>+62 831-5678-9012</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="badge badge-closed">🔴 Buka Senin, Rabu, Jumat</span>
+          </div>
+        </div>
+
+        <div class="tbm-card" data-area="Sukaluyu">
+          <div class="card-header">
+            <span class="card-icon">🎨</span>
+            <span class="card-area">Sukaluyu</span>
+          </div>
+          <h3 class="card-name">TBM Kreasi Sukaluyu</h3>
+          <p class="card-desc">Ruang literasi kreatif yang memadukan buku dengan seni dan kerajinan. Tersedia koleksi buku seni, majalah, dan perlengkapan menggambar gratis.</p>
+          <div class="card-info">
+            <div class="info-row">
+              <span class="info-icon">📍</span>
+              <span>RT 05/RW 02, Desa Sukaluyu, Telukjambe Timur, Karawang</span>
+            </div>
+            <div class="info-row">
+              <span class="info-icon">📞</span>
+              <span>+62 856-6789-0123</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="badge badge-open">🟢 Buka Kamis–Minggu</span>
+          </div>
+        </div>
+
+        <div class="tbm-card" data-area="Sukaharja">
+          <div class="card-header">
+            <span class="card-icon">🌿</span>
+            <span class="card-area">Sukaharja</span>
+          </div>
+          <h3 class="card-name">TBM Hijau Sukaharja</h3>
+          <p class="card-desc">Taman bacaan berbasis alam di tepi sungai dengan koleksi buku lingkungan hidup, pertanian, dan kesehatan. Suasana nyaman untuk membaca.</p>
+          <div class="card-info">
+            <div class="info-row">
+              <span class="info-icon">📍</span>
+              <span>Jl. Sungai Citarum No. 7, Desa Sukaharja, Telukjambe Timur</span>
+            </div>
+            <div class="info-row">
+              <span class="info-icon">📞</span>
+              <span>+62 877-7890-1234</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="badge badge-open">🟢 Buka Senin–Sabtu</span>
+          </div>
+        </div>
+
+        <div class="tbm-card" data-area="Margamulya">
+          <div class="card-header">
+            <span class="card-icon">👦</span>
+            <span class="card-area">Margamulya</span>
+          </div>
+          <h3 class="card-name">TBM Anak Bangsa Margamulya</h3>
+          <p class="card-desc">Khusus melayani anak-anak usia 4–15 tahun dengan program membaca interaktif, lomba cerpen, dan kunjungan perpustakaan keliling setiap bulan.</p>
+          <div class="card-info">
+            <div class="info-row">
+              <span class="info-icon">📍</span>
+              <span>Perumahan Griya Indah Blok A5, Desa Margamulya, Telukjambe Timur</span>
+            </div>
+            <div class="info-row">
+              <span class="info-icon">📞</span>
+              <span>+62 888-8901-2345</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="badge badge-open">🟢 Buka Setiap Hari</span>
+          </div>
+        </div>
+
+      </div><!-- /tbm-grid -->
+    </div>
+  </section>
+
+  <!-- ===== HALAMAN KONTAK ===== -->
+  <section class="page" id="kontak">
+    <div class="section">
+      <div class="section-label">Hubungi Kami</div>
+      <h2 class="section-title">Mari Terhubung!</h2>
+      <p class="section-sub">Punya pertanyaan, ingin bergabung, atau ingin mendirikan TBM baru? Kami siap membantu.</p>
+
+      <div class="kontak-layout">
+
+        <!-- Info Kontak -->
+        <div class="kontak-info">
+          <div class="kontak-card">
+            <div class="kontak-icon">📱</div>
+            <div>
+              <div class="kontak-label">Nomor HP / WhatsApp</div>
+              <a class="kontak-value" href="https://wa.me/6281234567890" target="_blank">+62 812-3456-7890</a>
+            </div>
+          </div>
+          <div class="kontak-card">
+            <div class="kontak-icon">✉️</div>
+            <div>
+              <div class="kontak-label">Email</div>
+              <a class="kontak-value" href="mailto:lenteraliterasi@gmail.com">lenteraliterasi@gmail.com</a>
+            </div>
+          </div>
+          <div class="kontak-card">
+            <div class="kontak-icon">📍</div>
+            <div>
+              <div class="kontak-label">Lokasi Program</div>
+              <span class="kontak-value">Telukjambe Timur, Karawang, Jawa Barat</span>
+            </div>
+          </div>
+          <div class="kontak-card">
+            <div class="kontak-icon">🕐</div>
+            <div>
+              <div class="kontak-label">Jam Operasional Sekretariat</div>
+              <span class="kontak-value">Senin – Jumat, 08.00 – 16.00 WIB</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Kontak -->
+        <div class="kontak-form-wrap">
+          <form class="kontak-form" id="kontakForm">
+            <div class="form-group">
+              <label for="nama">Nama Lengkap</label>
+              <input type="text" id="nama" placeholder="Masukkan nama Anda" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="nama@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="subjek">Subjek</label>
+              <input type="text" id="subjek" placeholder="Topik pesan Anda" required />
+            </div>
+            <div class="form-group">
+              <label for="pesan">Pesan</label>
+              <textarea id="pesan" rows="5" placeholder="Tuliskan pesan Anda di sini..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Kirim Pesan 🚀</button>
+          </form>
+          <!-- Success message (hidden by default) -->
+          <div class="form-success" id="formSuccess">
+            <span>✅</span>
+            <p>Pesan berhasil dikirim! Kami akan menghubungi Anda segera.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-icon">🪔</span>
+        <span class="logo-text">Lentera Literasi</span>
+      </div>
+      <p class="footer-tagline">Menyalakan semangat membaca di Telukjambe Timur, Karawang.</p>
+      <p class="footer-copy">© 2025 Lentera Literasi. Dibuat dengan ❤️ untuk masyarakat.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
