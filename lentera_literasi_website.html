@@ -1,0 +1,402 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif); }
+  .site { background: #FFFAD8; min-height: 100vh; font-family: 'Segoe UI', sans-serif; }
+
+  /* NAV */
+  .nav { background: rgba(255,250,216,0.95); border-bottom: 2px solid #ffde59; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; height: 56px; position: sticky; top: 0; z-index: 100; }
+  .nav-brand { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; color: #1a1a2e; }
+  .nav-brand .dot { width: 22px; height: 22px; background: #e61f93; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .nav-brand .dot svg { width: 13px; height: 13px; fill: #fff; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-btn { padding: 6px 16px; border-radius: 999px; border: none; background: transparent; font-size: 13px; font-weight: 600; color: #5a5a7a; cursor: pointer; transition: .2s; }
+  .nav-btn:hover { background: #ffde59; color: #1a1a2e; }
+  .nav-btn.active { background: #ffde59; color: #1a1a2e; }
+
+  /* PAGE */
+  .page { display: none; }
+  .page.show { display: block; }
+
+  /* HERO */
+  .hero { padding: 52px 28px 44px; max-width: 700px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; }
+  .hero-badge { display: inline-block; background: #1a1a2e; color: #ffde59; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; margin-bottom: 14px; }
+  .hero-title { font-size: 36px; font-weight: 800; line-height: 1.1; color: #1a1a2e; margin-bottom: 12px; }
+  .hero-title em { color: #e61f93; font-style: italic; }
+  .hero-desc { font-size: 14px; line-height: 1.7; color: #5a5a7a; margin-bottom: 22px; }
+  .hero-cta { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-pink { background: #e61f93; color: #fff; border: none; padding: 10px 22px; border-radius: 999px; font-size: 13px; font-weight: 700; cursor: pointer; transition: .2s; }
+  .btn-pink:hover { background: #c0187c; transform: translateY(-1px); }
+  .btn-dark { background: transparent; color: #1a1a2e; border: 2px solid #1a1a2e; padding: 10px 22px; border-radius: 999px; font-size: 13px; font-weight: 700; cursor: pointer; transition: .2s; }
+  .btn-dark:hover { background: #1a1a2e; color: #ffde59; }
+
+  /* BOOK ILLO */
+  .book-illo { position: relative; width: 120px; height: 140px; flex-shrink: 0; }
+  .bk { position: absolute; border-radius: 3px 10px 10px 3px; }
+  .bk1 { width: 80px; height: 108px; background: #e61f93; bottom: 0; left: 8px; transform: rotate(-8deg); }
+  .bk2 { width: 74px; height: 98px; background: #ffde59; bottom: 10px; left: 22px; transform: rotate(-2deg); }
+  .bk3 { width: 68px; height: 88px; background: #4ecdc4; bottom: 18px; left: 32px; transform: rotate(5deg); }
+  .lantern { position: absolute; top: 0; right: 0; font-size: 28px; animation: glow 3s ease-in-out infinite; }
+  @keyframes glow { 0%,100% { filter: drop-shadow(0 0 8px rgba(255,222,89,.6)); } 50% { filter: drop-shadow(0 0 18px rgba(255,222,89,1)); } }
+
+  /* STATS */
+  .stats { background: #1a1a2e; display: grid; grid-template-columns: repeat(4,1fr); text-align: center; padding: 24px 0; }
+  .stat-item { padding: 0 12px; }
+  .stat-item + .stat-item { border-left: 1px solid rgba(255,255,255,.12); }
+  .stat-n { font-size: 22px; font-weight: 800; color: #ffde59; }
+  .stat-l { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-top: 2px; }
+
+  /* ABOUT */
+  .about { padding: 48px 28px; max-width: 700px; margin: 0 auto; text-align: center; }
+  .sec-tag { display: inline-block; background: #fce4f3; color: #e61f93; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; margin-bottom: 10px; }
+  .sec-title { font-size: 26px; font-weight: 800; color: #1a1a2e; margin-bottom: 8px; }
+  .sec-sub { font-size: 13px; color: #5a5a7a; margin-bottom: 28px; line-height: 1.6; }
+  .about-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .about-card { background: #fff; border-radius: 16px; padding: 24px 18px; border: 2px solid #ffde59; text-align: left; transition: .2s; position: relative; overflow: hidden; }
+  .about-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg,#ffde59,#e61f93); }
+  .about-card:hover { transform: translateY(-4px); border-color: #e61f93; box-shadow: 0 8px 24px rgba(0,0,0,.1); }
+  .ac-icon { font-size: 24px; margin-bottom: 10px; }
+  .ac-title { font-size: 14px; font-weight: 700; color: #1a1a2e; margin-bottom: 6px; }
+  .ac-text { font-size: 12px; color: #5a5a7a; line-height: 1.6; }
+
+  /* CTA BANNER */
+  .cta-banner { background: #e61f93; border-radius: 20px; margin: 0 28px 48px; padding: 32px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .cta-text { color: #fff; font-size: 14px; font-weight: 600; line-height: 1.5; max-width: 380px; }
+  .btn-yellow { background: #ffde59; color: #1a1a2e; border: none; padding: 10px 22px; border-radius: 999px; font-size: 13px; font-weight: 700; cursor: pointer; transition: .2s; }
+  .btn-yellow:hover { background: #fff; }
+
+  /* TBM PAGE */
+  .tbm-section { padding: 48px 28px; max-width: 700px; margin: 0 auto; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .chip { padding: 6px 16px; border-radius: 999px; border: 2px solid #f0e89a; background: #fff; font-size: 12px; font-weight: 600; color: #5a5a7a; cursor: pointer; transition: .2s; }
+  .chip:hover { border-color: #e61f93; color: #e61f93; }
+  .chip.active { background: #e61f93; border-color: #e61f93; color: #fff; }
+  .tbm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .tbm-card { background: #fff; border-radius: 16px; padding: 20px; border: 2px solid transparent; box-shadow: 0 2px 8px rgba(0,0,0,.06); transition: .2s; }
+  .tbm-card:hover { border-color: #ffde59; transform: translateY(-3px); }
+  .tbm-card.hidden { display: none; }
+  .tc-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .tc-icon { font-size: 20px; }
+  .tc-area { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; background: #f5edaa; color: #7a6a00; padding: 3px 10px; border-radius: 999px; }
+  .tc-name { font-size: 14px; font-weight: 700; color: #1a1a2e; margin-bottom: 8px; line-height: 1.3; }
+  .tc-desc { font-size: 12px; color: #5a5a7a; line-height: 1.6; margin-bottom: 12px; }
+  .tc-info { border-top: 1.5px dashed #f0e89a; padding-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+  .tc-row { display: flex; gap: 8px; font-size: 11px; color: #5a5a7a; line-height: 1.4; }
+  .tc-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 999px; margin-top: 8px; }
+  .open { background: #e6f9f0; color: #1a7a4a; }
+  .closed { background: #fff0f0; color: #c0392b; }
+
+  /* KONTAK PAGE */
+  .kontak-section { padding: 48px 28px; max-width: 700px; margin: 0 auto; }
+  .kontak-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 24px; margin-top: 28px; }
+  .k-cards { display: flex; flex-direction: column; gap: 12px; }
+  .k-card { background: #fff; border-radius: 12px; padding: 16px 18px; border: 2px solid #ffde59; display: flex; gap: 12px; align-items: flex-start; transition: .2s; }
+  .k-card:hover { border-color: #e61f93; transform: translateX(3px); }
+  .k-icon { font-size: 20px; flex-shrink: 0; }
+  .k-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #5a5a7a; margin-bottom: 3px; }
+  .k-val { font-size: 13px; font-weight: 600; color: #1a1a2e; }
+  .k-val a { color: #e61f93; text-decoration: none; }
+  .form-box { background: #fff; border-radius: 16px; padding: 24px; border: 2px solid #ffde59; }
+  .f-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+  .f-group label { font-size: 12px; font-weight: 700; color: #1a1a2e; }
+  .f-group input, .f-group textarea { padding: 10px 13px; border: 2px solid #f0e89a; border-radius: 8px; font-size: 13px; color: #1a1a2e; background: #FFFAD8; outline: none; font-family: inherit; resize: vertical; transition: .2s; }
+  .f-group input:focus, .f-group textarea:focus { border-color: #e61f93; background: #fff; }
+  .success-msg { display: none; text-align: center; padding: 32px 16px; }
+  .success-msg .ck { font-size: 40px; }
+  .success-msg p { font-size: 14px; font-weight: 600; color: #1a1a2e; margin-top: 10px; }
+
+  /* FOOTER */
+  .footer { background: #1a1a2e; color: rgba(255,255,255,.6); text-align: center; padding: 32px 24px; }
+  .footer-brand { display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 800; font-size: 16px; color: #ffde59; margin-bottom: 8px; }
+  .footer p { font-size: 12px; }
+</style>
+
+<div class="site">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-brand">
+      <div class="dot">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8 2 6 5 6 8c0 4 4 7 6 10 2-3 6-6 6-10 0-3-2-6-6-6zm0 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+      </div>
+      Lentera Literasi
+    </div>
+    <div class="nav-links">
+      <button class="nav-btn active" onclick="showPage('home',this)">Home</button>
+      <button class="nav-btn" onclick="showPage('tbm',this)">Daftar TBM</button>
+      <button class="nav-btn" onclick="showPage('kontak',this)">Kontak</button>
+    </div>
+  </nav>
+
+  <!-- HOME -->
+  <div class="page show" id="p-home">
+    <div class="hero">
+      <div>
+        <div class="hero-badge">📚 Telukjambe Timur, Karawang</div>
+        <div class="hero-title">Cahaya Literasi<br><em>untuk Semua</em></div>
+        <div class="hero-desc">Lentera Literasi hadir sebagai jembatan antara masyarakat dan dunia pengetahuan. Bersama TBM, kami menyalakan semangat membaca di Telukjambe Timur.</div>
+        <div class="hero-cta">
+          <button class="btn-pink" onclick="showPage('tbm',null)">Jelajahi TBM</button>
+          <button class="btn-dark" onclick="showPage('kontak',null)">Hubungi Kami</button>
+        </div>
+      </div>
+      <div class="book-illo">
+        <div class="bk bk1"></div>
+        <div class="bk bk2"></div>
+        <div class="bk bk3"></div>
+        <div class="lantern">🪔</div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-item"><div class="stat-n">8+</div><div class="stat-l">TBM Aktif</div></div>
+      <div class="stat-item"><div class="stat-n">2.000+</div><div class="stat-l">Koleksi Buku</div></div>
+      <div class="stat-item"><div class="stat-n">500+</div><div class="stat-l">Pembaca Aktif</div></div>
+      <div class="stat-item"><div class="stat-n">6</div><div class="stat-l">Kelurahan</div></div>
+    </div>
+
+    <div class="about">
+      <div class="sec-tag">Tentang Program</div>
+      <div class="sec-title">Apa itu Lentera Literasi?</div>
+      <div class="sec-sub">Program literasi berbasis komunitas yang menghidupkan taman bacaan di seluruh penjuru Telukjambe Timur.</div>
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="ac-icon">🎯</div>
+          <div class="ac-title">Tujuan</div>
+          <div class="ac-text">Meningkatkan minat baca masyarakat, khususnya anak-anak dan remaja, sebagai fondasi kecerdasan bangsa.</div>
+        </div>
+        <div class="about-card">
+          <div class="ac-icon">🌱</div>
+          <div class="ac-title">Manfaat</div>
+          <div class="ac-text">Akses buku gratis, menumbuhkan kreativitas, dan membuka wawasan melalui kegiatan literasi yang menyenangkan.</div>
+        </div>
+        <div class="about-card">
+          <div class="ac-icon">🏡</div>
+          <div class="ac-title">Peran TBM</div>
+          <div class="ac-text">Ruang belajar yang inklusif, ramah, dan mudah dijangkau oleh seluruh lapisan masyarakat.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <div class="cta-text">Temukan TBM terdekat di lingkunganmu dan mulailah perjalanan literasimu hari ini!</div>
+      <button class="btn-yellow" onclick="showPage('tbm',null)">Lihat Daftar TBM →</button>
+    </div>
+  </div>
+
+  <!-- TBM -->
+  <div class="page" id="p-tbm">
+    <div class="tbm-section">
+      <div class="sec-tag">Direktori</div>
+      <div class="sec-title">Daftar Taman Bacaan</div>
+      <div class="sec-sub">TBM aktif di wilayah Telukjambe Timur, Karawang.</div>
+
+      <div class="chips">
+        <button class="chip active" onclick="filterTBM('all',this)">Semua</button>
+        <button class="chip" onclick="filterTBM('Wadas',this)">Wadas</button>
+        <button class="chip" onclick="filterTBM('Sukaluyu',this)">Sukaluyu</button>
+        <button class="chip" onclick="filterTBM('Puseurjaya',this)">Puseurjaya</button>
+        <button class="chip" onclick="filterTBM('Margamulya',this)">Margamulya</button>
+        <button class="chip" onclick="filterTBM('Sirnabaya',this)">Sirnabaya</button>
+        <button class="chip" onclick="filterTBM('Sukaharja',this)">Sukaharja</button>
+      </div>
+
+      <div class="tbm-grid" id="tbmGrid">
+        <div class="tbm-card" data-area="Wadas">
+          <div class="tc-head"><span class="tc-icon">📖</span><span class="tc-area">Wadas</span></div>
+          <div class="tc-name">TBM Cahaya Wadas</div>
+          <div class="tc-desc">Koleksi buku anak, remaja, dan keterampilan untuk warga Desa Wadas dan sekitarnya.</div>
+          <div class="tc-info">
+            <div class="tc-row">📍 Jl. Raya Wadas No. 12, Telukjambe Timur</div>
+            <div class="tc-row">📞 +62 812-3456-7890</div>
+            <span class="tc-badge open">🟢 Senin – Sabtu</span>
+          </div>
+        </div>
+        <div class="tbm-card" data-area="Sukaluyu">
+          <div class="tc-head"><span class="tc-icon">🌟</span><span class="tc-area">Sukaluyu</span></div>
+          <div class="tc-name">TBM Bintang Sukaluyu</div>
+          <div class="tc-desc">Mendongeng, belajar bersama, dan kelas membaca bagi anak-anak usia dini.</div>
+          <div class="tc-info">
+            <div class="tc-row">📍 Jl. Sukaluyu Raya No. 5, Telukjambe Timur</div>
+            <div class="tc-row">📞 +62 813-2345-6789</div>
+            <span class="tc-badge open">🟢 Setiap Hari</span>
+          </div>
+        </div>
+        <div class="tbm-card" data-area="Puseurjaya">
+          <div class="tc-head"><span class="tc-icon">🏛️</span><span class="tc-area">Puseurjaya</span></div>
+          <div class="tc-name">TBM Tunas Puseurjaya</div>
+          <div class="tc-desc">Di balai desa, koleksi lengkap: pelajaran, novel, dan referensi pertanian.</div>
+          <div class="tc-info">
+            <div class="tc-row">📍 Balai Desa Puseurjaya, Telukjambe Timur</div>
+            <div class="tc-row">📞 +62 821-3456-7890</div>
+            <span class="tc-badge open">🟢 Selasa – Minggu</span>
+          </div>
+        </div>
+        <div class="tbm-card" data-area="Margamulya">
+          <div class="tc-head"><span class="tc-icon">🌸</span><span class="tc-area">Margamulya</span></div>
+          <div class="tc-name">TBM Mekar Margamulya</div>
+          <div class="tc-desc">Berbasis masjid, program kelas literasi Al-Qur'an dan buku islami untuk keluarga.</div>
+          <div class="tc-info">
+            <div class="tc-row">📍 Komplek Masjid Al-Hidayah, Margamulya</div>
+            <div class="tc-row">📞 +62 822-4567-8901</div>
+            <span class="tc-badge open">🟢 Setiap Hari</span>
+          </div>
+        </div>
+        <div class="tbm-card" data-area="Sirnabaya">
+          <div class="tc-head"><span class="tc-icon">🚀</span><span class="tc-area">Sirnabaya</span></div>
+          <div class="tc-name">TBM Cerdas Sirnabaya</div>
+          <div class="tc-desc">Pojok digital, buku sains & teknologi, dan program coding dasar untuk remaja.</div>
+          <div class="tc-info">
+            <div class="tc-row">📍 Jl. Sirnabaya Indah Blok C No. 3</div>
+            <div class="tc-row">📞 +62 831-5678-9012</div>
+            <span class="tc-badge closed">🔴 Senin, Rabu, Jumat</span>
+          </div>
+        </div>
+        <div class="tbm-card" data-area="Sukaluyu">
+          <div class="tc-head"><span class="tc-icon">🎨</span><span class="tc-area">Sukaluyu</span></div>
+          <div class="tc-name">TBM Kreasi Sukaluyu</div>
+          <div class="tc-desc">Memadukan buku dengan seni & kerajinan. Koleksi majalah dan perlengkapan menggambar gratis.</div>
+          <div class="tc-info">
+            <div class="tc-row">📍 RT 05/RW 02, Desa Sukaluyu</div>
+            <div class="tc-row">📞 +62 856-6789-0123</div>
+            <span class="tc-badge open">🟢 Kamis – Minggu</span>
+          </div>
+        </div>
+        <div class="tbm-card" data-area="Sukaharja">
+          <div class="tc-head"><span class="tc-icon">🌿</span><span class="tc-area">Sukaharja</span></div>
+          <div class="tc-name">TBM Hijau Sukaharja</div>
+          <div class="tc-desc">Berbasis alam di tepi sungai, koleksi buku lingkungan hidup dan kesehatan.</div>
+          <div class="tc-info">
+            <div class="tc-row">📍 Jl. Sungai Citarum No. 7, Sukaharja</div>
+            <div class="tc-row">📞 +62 877-7890-1234</div>
+            <span class="tc-badge open">🟢 Senin – Sabtu</span>
+          </div>
+        </div>
+        <div class="tbm-card" data-area="Margamulya">
+          <div class="tc-head"><span class="tc-icon">👦</span><span class="tc-area">Margamulya</span></div>
+          <div class="tc-name">TBM Anak Bangsa</div>
+          <div class="tc-desc">Khusus usia 4–15 tahun, lomba cerpen, dan perpustakaan keliling setiap bulan.</div>
+          <div class="tc-info">
+            <div class="tc-row">📍 Perumahan Griya Indah A5, Margamulya</div>
+            <div class="tc-row">📞 +62 888-8901-2345</div>
+            <span class="tc-badge open">🟢 Setiap Hari</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KONTAK -->
+  <div class="page" id="p-kontak">
+    <div class="kontak-section">
+      <div class="sec-tag">Hubungi Kami</div>
+      <div class="sec-title">Mari Terhubung!</div>
+      <div class="sec-sub">Punya pertanyaan atau ingin bergabung? Kami siap membantu.</div>
+
+      <div class="kontak-layout">
+        <div class="k-cards">
+          <div class="k-card">
+            <div class="k-icon">📱</div>
+            <div>
+              <div class="k-label">WhatsApp</div>
+              <div class="k-val"><a href="#">+62 812-3456-7890</a></div>
+            </div>
+          </div>
+          <div class="k-card">
+            <div class="k-icon">✉️</div>
+            <div>
+              <div class="k-label">Email</div>
+              <div class="k-val"><a href="#">lenteraliterasi@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="k-card">
+            <div class="k-icon">📍</div>
+            <div>
+              <div class="k-label">Lokasi</div>
+              <div class="k-val">Telukjambe Timur, Karawang</div>
+            </div>
+          </div>
+          <div class="k-card">
+            <div class="k-icon">🕐</div>
+            <div>
+              <div class="k-label">Jam Operasional</div>
+              <div class="k-val">Senin–Jumat, 08.00–16.00</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-box">
+          <form id="kForm" onsubmit="submitForm(event)">
+            <div class="f-group">
+              <label>Nama Lengkap</label>
+              <input type="text" placeholder="Nama Anda" required />
+            </div>
+            <div class="f-group">
+              <label>Email</label>
+              <input type="email" placeholder="nama@email.com" required />
+            </div>
+            <div class="f-group">
+              <label>Subjek</label>
+              <input type="text" placeholder="Topik pesan" required />
+            </div>
+            <div class="f-group">
+              <label>Pesan</label>
+              <textarea rows="4" placeholder="Tulis pesan Anda..." required></textarea>
+            </div>
+            <button type="submit" class="btn-pink" style="width:100%;padding:12px;font-size:14px;">Kirim Pesan 🚀</button>
+          </form>
+          <div class="success-msg" id="successMsg">
+            <div class="ck">✅</div>
+            <p>Pesan berhasil dikirim!<br>Kami akan menghubungi Anda segera.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand">🪔 Lentera Literasi</div>
+    <p>Menyalakan semangat membaca di Telukjambe Timur, Karawang.</p>
+    <p style="margin-top:6px;opacity:.5;">© 2025 Lentera Literasi. Dibuat dengan ❤️ untuk masyarakat.</p>
+  </footer>
+</div>
+
+<script>
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('show'));
+  document.getElementById('p-' + id).classList.add('show');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  else {
+    const map = {home:0, tbm:1, kontak:2};
+    const btns = document.querySelectorAll('.nav-btn');
+    if (btns[map[id]]) btns[map[id]].classList.add('active');
+  }
+  window.scrollTo && window.scrollTo(0,0);
+}
+
+function filterTBM(area, btn) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.tbm-card').forEach(card => {
+    if (area === 'all' || card.dataset.area === area) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+function submitForm(e) {
+  e.preventDefault();
+  document.getElementById('kForm').style.display = 'none';
+  const s = document.getElementById('successMsg');
+  s.style.display = 'block';
+  setTimeout(() => {
+    e.target.reset();
+    e.target.style.display = 'block';
+    s.style.display = 'none';
+  }, 3500);
+}
+</script>
